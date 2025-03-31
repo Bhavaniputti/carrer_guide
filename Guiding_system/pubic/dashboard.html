@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Year of Study</title>
+  <!-- Import Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Global Reset & Font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Body Styles */
+    body {
+      background: linear-gradient(135deg, #eef2f3, #8e9eab);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding-top: 80px; /* To ensure content isn't hidden behind the fixed header */
+    }
+    
+    /* Header Styling */
+    header {
+      width: 100%;
+      background-color:linear-gradient(90deg, #667eea, #764ba2);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    
+    header h2 {
+      font-size: 20px;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    
+    .logout-button {
+      padding: 10px 20px;
+      background: #ff4b5c;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(255, 75, 92, 0.3);
+    }
+    
+    .logout-button:hover {
+      background: #e63e50;
+      box-shadow: 0 6px 15px rgba(255, 75, 92, 0.5);
+    }
+    
+    /* Year Container */
+    .year-container {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(20px);
+      border-radius: 15px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    h1 {
+      color: #2c3e50;
+      font-size: 28px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    
+    label, select {
+      display: block;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.7);
+      color: #333;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    select:focus {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
+    
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    button[type="submit"]:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    }
+    
+    /* Learning Content Display */
+    #learningContent {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2c3e50;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: none;
+      max-width: 400px;
+      width: 100%;
+    }
+    
+    /* Responsive Tweaks */
+    @media (max-width: 480px) {
+      header h2 {
+        font-size: 18px;
+      }
+      
+      .logout-button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .year-container, #learningContent {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h2>Carrer Guide</h2>
+    <button class="logout-button" onclick="logout()">Logout</button>
+  </header>
+  
+  <!-- Main Year Selection Container -->
+  <div class="year-container">
+    <h1>Select Your Year of Study</h1>
+    <form id="yearForm">
+      <select id="year" name="year">
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <!-- Learning Content Display -->
+  <div id="learningContent"></div>
+  
+  <script src="script.js" defer></script>
+</body>
+</html>
